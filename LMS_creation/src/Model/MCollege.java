@@ -1,10 +1,10 @@
 package Model;
 
-public class MSCollege {
+public class MCollege {
 	private int dID;
 	private String dname;
 	private String dfileName;
-	public  MSCollege() {
+	public  MCollege() {
 		
 	}
 	public int getdID() {

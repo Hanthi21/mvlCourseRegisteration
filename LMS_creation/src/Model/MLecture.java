@@ -1,6 +1,6 @@
 package Model;
 
-public class MSLecture {
+public class MLecture {
 
 	private int code;
 	private String lName;

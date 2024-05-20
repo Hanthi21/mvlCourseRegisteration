@@ -1,6 +1,6 @@
 package Model;
 
-public class MSDepartment {
+public class MDepartment {
 	private int id;
 	private String name;
 	private String fileName;

@@ -5,13 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class DAOSCollege {
-//seoul campus college list 
-	public DAOSCollege() {
+public class DAOCollege {
+
+	public DAOCollege() {
 		
 	}
-	public Vector<MSCollege> getList1(String fileName)  {
-		Vector<MSCollege> sCollegeList = new Vector<MSCollege>();
+	public Vector<MIndex> getList(String fileName)  {
+		Vector<MIndex> mCollegeList = new Vector<MIndex>();
 		try {
 			File file1 = new File("data/"+fileName);	
 			Scanner scanner= new Scanner(file1);
@@ -19,20 +19,20 @@ public class DAOSCollege {
 			while(scanner.hasNext()) {
 				line = scanner.nextLine();
 				
-				MSCollege seoulCollege =  new MSCollege();
+				MIndex mCollege =  new MIndex();
 				String[] wordList1 = line.split(" ");
 				
-				seoulCollege.setdID(Integer.parseInt(wordList1[0]));
-				seoulCollege.setDname(wordList1[1]);
-				seoulCollege.setDfileName(wordList1[2]);
-				sCollegeList.add(seoulCollege);
+				mCollege.setId(Integer.parseInt(wordList1[0]));
+				mCollege.setName(wordList1[1]);
+				mCollege.setFileName(wordList1[2]);
+				mCollegeList.add(mCollege);
 			}
 			
 			scanner.close();
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-			return sCollegeList;
+			return mCollegeList;
 	
 	}
 }

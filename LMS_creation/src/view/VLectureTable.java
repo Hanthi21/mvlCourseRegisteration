@@ -7,6 +7,8 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Model.MLecture;
@@ -31,14 +33,20 @@ public class VLectureTable extends JScrollPane {
 		this.model = new DefaultTableModel(null, header);
 		this.table.setModel(this.model);
 		
+		//Add list selection listener 
+		
 		
 	}
 	
 	
 	public void show(String fileName) {
 		
-		CLecture csLecture = new CLecture();
-		Vector<MLecture> msLectureList = csLecture.getList(fileName);
+		//Clear existing rows before adding new data
+		
+		clearTable();
+		
+		CLecture cLecture = new CLecture();
+		Vector<MLecture> msLectureList = cLecture.getList(fileName);
 		
 		String row[] = new String[5];
 		for(MLecture msLecture: msLectureList) {
@@ -52,10 +60,14 @@ public class VLectureTable extends JScrollPane {
 		this.updateUI();
 		
 	}
+	
+	private void clearTable() {
+		this.model.setRowCount(0);
+	}
 	public void initialize() {
 		
-		this.show("englishYG.txt");
-		this.show("basic.txt");
+	
+	
 	
 	}
 

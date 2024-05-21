@@ -29,7 +29,8 @@ public class VIndexTable extends JScrollPane {
 	
 	//association
 	private VIndexTable next;
-	public void setNext(VIndexTable next) {this.next = next;}
+	private VLectureTable lectureTable; //to refer VLectureTable
+
 	private Vector<MIndex> mIndexList;
 	
 
@@ -39,8 +40,28 @@ public class VIndexTable extends JScrollPane {
 		//generate table as a component
 		this.table = new JTable();
 		this.setViewportView(this.table);
+		this.newModel();
 	
+		/*MouseHandler mouseHandler = new MouseHandler();
+		this.table.addMouseListener(mouseHandler);
+		this.newModel();*/
 		
+		//List selection listener to the table
+		this.table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedRow = table.getSelectedRow();
+					if(selectedRow != -1) {
+						showNext(selectedRow);
+						updateLectureTable(selectedRow);
+					}
+					
+				
+			}
+		}
+		});
 	
 		
 			
@@ -75,7 +96,11 @@ public class VIndexTable extends JScrollPane {
 	}
 		this.updateUI();
 		//default
-		showNext(0);
+		//showNext(0);
+		if(!mIndexList.isEmpty()) {
+			showNext(0);
+			updateLectureTable(0);
+		}
 		}
 		
 	
@@ -86,7 +111,7 @@ private void showNext(int selectedIndex) {
 	}
 }
 
-private class MouseHandler implements MouseListener{
+/*private class MouseHandler implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -119,10 +144,20 @@ private class MouseHandler implements MouseListener{
 		
 	}
 	
+}*/
+private void updateLectureTable(int selectedIndex) {
+	if(this.lectureTable != null) {
+		String fileName = this.mIndexList.get(selectedIndex).getFileName();
+		this.lectureTable.show(fileName);
+	}
 }
 		
+public void setNext(VIndexTable next) {
+	this.next = next;
+}
 		
-		
-		
+public void setLectureTable(VLectureTable lectureTable) {
+	this.lectureTable = lectureTable;
+}
 	}
 

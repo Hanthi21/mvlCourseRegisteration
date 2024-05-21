@@ -10,23 +10,23 @@ public class VSelectionPanel extends JPanel {
 	
 	//components
 	private VIndexPanel vIndexPanel;
-	private VLectureTable vLectureTbale;
+	private VLectureTable vLectureTable;
 	
 	public VSelectionPanel() {
 		
 		LayoutManager layoutManager = new BoxLayout(this,BoxLayout.Y_AXIS);
 		this.setLayout(layoutManager);
 		
-		this.vIndexPanel = new VIndexPanel();
-		this.add(vIndexPanel);
 		
-		this.vLectureTbale = new VLectureTable();
-		this.add(vLectureTbale);
+		this.vLectureTable = new VLectureTable();
+		this.vIndexPanel = new VIndexPanel(vLectureTable);
+		this.add(vIndexPanel);
+		this.add(vLectureTable);
 	}
 
 	public void initialize() {
 		this.vIndexPanel.initialize();
-		this.vLectureTbale.initialize();
+		this.vLectureTable.initialize();
 		
 	}
 

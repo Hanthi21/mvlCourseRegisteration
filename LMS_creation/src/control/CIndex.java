@@ -2,21 +2,20 @@ package control;
 
 import java.util.Vector;
 
-import Model.DAOCampus;
+import Model.DAOIndex;
 import Model.MIndex;
 
 
 
 public class CIndex {
-private DAOCampus daoCampus;
+private DAOIndex daoIndex;
+
 	public Vector<MIndex> getList(String fileName){
-	this.daoCampus = new DAOCampus();
-	Vector<MIndex> mIndexList = this.daoCampus.getList(fileName);
+	this.daoIndex = new DAOIndex();
+	Vector<MIndex> mIndexList = this.daoIndex.getList(fileName);
 	return mIndexList;
 	
-	
-	
-	}
+		}
 
 	
 

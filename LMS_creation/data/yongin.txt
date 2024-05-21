@@ -1,4 +1,4 @@
-10 교양 general
+10 교양 generalY
 11 공과대학 engineering
 12 자연과학대학 science
 13 예술체육대학 art

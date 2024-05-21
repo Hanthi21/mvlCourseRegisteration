@@ -13,9 +13,11 @@ public class VIndexPanel extends JPanel {
 	private VIndexTable vCampus;
 	private VIndexTable vCollege;
 	private VIndexTable vDepartment;
+
+	
 	
 
-	public VIndexPanel() {
+	public VIndexPanel(VLectureTable lectureTable) {
 		LayoutManager layoutManager = new BoxLayout(this, BoxLayout.X_AXIS);
 		this.setLayout(layoutManager);
 		
@@ -28,9 +30,12 @@ public class VIndexPanel extends JPanel {
 		this.vDepartment = new VIndexTable();
 		this.add(vDepartment);
 		
+		
+		
 		this.vCampus.setNext(this.vCollege);
 		this.vCollege.setNext(this.vDepartment);
-	}
+		this.vDepartment.setLectureTable(lectureTable);
+			}
 
 	public void initialize() {
 		this.vCampus.show("root");

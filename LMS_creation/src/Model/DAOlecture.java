@@ -12,7 +12,7 @@ public class DAOlecture {
 	public Vector<MLecture> getList(String fileName){
 		Vector<MLecture> mLectureList = new Vector<MLecture>();
 		try {
-			File file = new File("data/"+fileName);
+			File file = new File("data/"+fileName+".txt");
 			
 			
 			Scanner s1 = new Scanner(file);

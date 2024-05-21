@@ -5,10 +5,10 @@ import java.util.Scanner;
 import java.util.Vector;
 import java.io.File;
 
-public class DAOCampus {
+public class DAOIndex {
 			//getter and setter
 
-	public DAOCampus() {
+	public DAOIndex() {
 			}
 	public Vector<MIndex> getList(String fileName)  {
 		Vector<MIndex> campusList = new Vector<MIndex>();

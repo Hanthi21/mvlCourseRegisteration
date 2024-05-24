@@ -8,6 +8,18 @@ public class MLecture {
 	private int credit;
 	private String time;
 	
+	//constructor to initialize all fields
+	public MLecture(int code,String lName, String professor, int credit,String time) {
+		this.code = code;
+		this.lName = lName;
+		this.professor = professor;
+		this.credit = credit;
+		this.time = time;
+	}
+	
+	
+	
+	//getters and setters
 	public int getCredit() {
 		return credit;
 	}

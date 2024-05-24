@@ -16,7 +16,7 @@ import Model.MIndex;
 
 import control.CIndex;
 
-public class VIndexTable extends JScrollPane {
+public class VIndexTable extends JScrollPane implements IIndex {
 	//attributes
 	
 	private static final long serialVersionUID = 1L;
@@ -71,7 +71,13 @@ public class VIndexTable extends JScrollPane {
 	private void newModel() {
 		//associate the table with a model
 		String header[] = {	"ID", "Campus" };
-		this.model = new DefaultTableModel(null, header);
+		this.model = new DefaultTableModel(null, header) {
+			//making cells not editable by the user
+			public boolean isCellEditable(int rowIndex,int columnIndex) {
+				return false;
+				
+		}
+		};
 		this.table.setModel(this.model);
 		
 	}

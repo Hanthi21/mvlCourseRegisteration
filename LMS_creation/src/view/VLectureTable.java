@@ -20,6 +20,7 @@ public class VLectureTable extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	JTable table = new JTable();
 	DefaultTableModel model;
+	private VPreRegister preRegisterTable;
 	
 	
 	
@@ -30,10 +31,14 @@ public class VLectureTable extends JScrollPane {
 		this.setViewportView(this.table);
 		
 		String header[] = {	"ID", "Name","Professor","Credit","Time" };
-		this.model = new DefaultTableModel(null, header);
+		this.model = new DefaultTableModel(null, header) {
+			public boolean isCellEditable(int rowIndex,int columnIndex) {
+				return false;
+			}
+		};
 		this.table.setModel(this.model);
 		
-		//Add list selection listener 
+		this.preRegisterTable = new VPreRegister();
 		
 		
 	}
@@ -69,6 +74,21 @@ public class VLectureTable extends JScrollPane {
 	
 	
 	
+	}
+	public VPreRegister getPreRegisterTable() {
+		return this.preRegisterTable;
+	}
+	public MLecture getSelectedLecture() {
+		int selectedRow = this.table.getSelectedRow();
+		if(selectedRow != -1) {
+			int code = Integer.parseInt((String)this.model.getValueAt(selectedRow, 0));
+			String name = (String) this.model.getValueAt(selectedRow, 1);
+			String professor = (String)this.model.getValueAt(selectedRow,2 );
+			int credit = Integer.parseInt((String)this.model.getValueAt(selectedRow,3));
+			String time = (String) this.model.getValueAt(selectedRow, 4);
+			return new MLecture(code,name,professor,credit,time);
+		}
+		return null;
 	}
 
 }

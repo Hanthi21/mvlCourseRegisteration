@@ -8,11 +8,13 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import constants.Constant.MainFrame;
+
 
 public class VMainFrame extends JFrame {
 	
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = MainFrame.VersionID;
 	
 	
 		//attributes
@@ -30,8 +32,8 @@ public class VMainFrame extends JFrame {
 		
 		
 		//attributes
-		
-		this.setSize(1000,700);
+		this.setLocation(MainFrame.X, MainFrame.Y);
+		this.setSize(MainFrame.Width,MainFrame.Height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -42,7 +44,7 @@ public class VMainFrame extends JFrame {
 		this.add(vCourseRegistration);
 		
 	}
-//methods
+//methods 
 
 
 

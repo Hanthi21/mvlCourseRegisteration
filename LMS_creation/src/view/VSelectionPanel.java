@@ -8,33 +8,32 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import Model.MLecture;
+import constants.Constant.MainFrame;
 
 public class VSelectionPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = MainFrame.VersionID;
 	
 	//components
 	private VIndexPanel vIndexPanel;
 	private VLectureTable vLectureTable;
-	private VPreRegister vPreRegisterTable;
+
 	
 	
 	public VSelectionPanel() {
 		
+		
 		LayoutManager layoutManager = new BoxLayout(this,BoxLayout.Y_AXIS);
 		this.setLayout(layoutManager);
 		
+		this.vIndexPanel = new VIndexPanel();
+		this.add(vIndexPanel);
 		
 		this.vLectureTable = new VLectureTable();
-		this.vIndexPanel = new VIndexPanel(vLectureTable);
-		
-		
-		this.vPreRegisterTable = new VPreRegister();
-		
-		
-		
-		
-		this.add(vIndexPanel);
 		this.add(vLectureTable);
+		
+		//association
+		this.vIndexPanel.associate(this.vLectureTable);
+	
 
 	}
 
@@ -44,8 +43,11 @@ public class VSelectionPanel extends JPanel {
 		
 	}
 
-	public VLectureTable getVLectureTable() {
-		return vLectureTable;
+	public VLectureTable getLectureTable() {
+				return this.vLectureTable;
 	}
+
+	
+
 
 }

@@ -7,14 +7,11 @@ public class MLecture {
 	private String professor;
 	private int credit;
 	private String time;
+	private String department;
 	
 	//constructor to initialize all fields
-	public MLecture(int code,String lName, String professor, int credit,String time) {
-		this.code = code;
-		this.lName = lName;
-		this.professor = professor;
-		this.credit = credit;
-		this.time = time;
+	public MLecture() {
+		
 	}
 	
 	
@@ -49,6 +46,18 @@ public class MLecture {
 	}
 	public void setTime(String time) {
 		this.time = time;
+	}
+
+
+
+	public String getDepartment() {
+		return department;
+	}
+
+
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	
 

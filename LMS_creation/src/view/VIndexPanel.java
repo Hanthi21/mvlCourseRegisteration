@@ -6,8 +6,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import constants.Constant.MainFrame;
+import view.VIndexTable.IndexType;
+
 public class VIndexPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = MainFrame.VersionID;
 	
 	
 	private VIndexTable vCampus;
@@ -17,36 +20,49 @@ public class VIndexPanel extends JPanel {
 	
 	
 
-	public VIndexPanel(VLectureTable lectureTable) {
+	public VIndexPanel() {
 		LayoutManager layoutManager = new BoxLayout(this, BoxLayout.X_AXIS);
 		this.setLayout(layoutManager);
 		
-		this.vCampus = new VIndexTable();
+		this.vCampus = new VIndexTable(IndexType.CAMPUS);
 		this.add(vCampus);
 		
-		this.vCollege = new VIndexTable();
+		this.vCollege = new VIndexTable(IndexType.COLLEGE);
 		this.add(vCollege);
 		
-		this.vDepartment = new VIndexTable();
+		this.vDepartment = new VIndexTable(IndexType.DEPARTMENT);
 		this.add(vDepartment);
 		
 		
 		
 		this.vCampus.setNext(this.vCollege);
 		this.vCollege.setNext(this.vDepartment);
-		this.vDepartment.setLectureTable(lectureTable);
+		
 			}
 
 	public void initialize() {
 		this.vCampus.show("root");
-		this.vCollege.show("yongin");
-		this.vDepartment.show("generalY");
+	
 		
 
 		
 		
 	
 	}
-	
+
+	public void associate(VLectureTable vLectureTable) {
+		this.vDepartment.setNext(vLectureTable);
+		
+	}
+	//Add getter methods
+	public VIndexTable getVCampus() {
+		return vCampus;
+	}
+	public VIndexTable getVCollege() {
+		return vCollege;
+	}
+	public VIndexTable getVDepartment() {
+		return vDepartment;
+	}
 	
 }

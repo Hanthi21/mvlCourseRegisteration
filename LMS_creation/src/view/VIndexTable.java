@@ -3,6 +3,9 @@ package view;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
@@ -13,41 +16,46 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Model.MIndex;
-
+import Model.MLecture;
+import constants.Constant.MainFrame;
+import constants.Constant.indexTable;
+import constants.Constant.indexTable.EColumnTitle;
 import control.CIndex;
 
 public class VIndexTable extends JScrollPane implements IIndex {
 	//attributes
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = MainFrame.VersionID;
 	
 	
 	//Components
 	
 	private JTable table;
 	private DefaultTableModel model;
+	private List<MIndex> mIndexList;
+	private IndexType indexType;
+
+	
 	
 	//association
-	private VIndexTable next;
-	private VLectureTable lectureTable; //to refer VLectureTable
-
-	private Vector<MIndex> mIndexList;
-	
-
+	private IIndex next;
+	public void setNext(IIndex next) {this.next = next;}
 	
 	//methods
-	public VIndexTable() {
+	public VIndexTable(IndexType indexType) {
+		this.indexType = indexType;
 		//generate table as a component
 		this.table = new JTable();
 		this.setViewportView(this.table);
-		this.newModel();
+		
 	
-		/*MouseHandler mouseHandler = new MouseHandler();
+		MouseHandler mouseHandler = new MouseHandler();
 		this.table.addMouseListener(mouseHandler);
-		this.newModel();*/
+		this.newModel();
+		this.mIndexList = new ArrayList<>();
 		
 		//List selection listener to the table
-		this.table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		/*this.table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -61,7 +69,7 @@ public class VIndexTable extends JScrollPane implements IIndex {
 				
 			}
 		}
-		});
+		});*/
 	
 		
 			
@@ -70,7 +78,7 @@ public class VIndexTable extends JScrollPane implements IIndex {
 	}
 	private void newModel() {
 		//associate the table with a model
-		String header[] = {	"ID", "Campus" };
+		String header[] = {	"ID", getIndexColumnTitle() };
 		this.model = new DefaultTableModel(null, header) {
 			//making cells not editable by the user
 			public boolean isCellEditable(int rowIndex,int columnIndex) {
@@ -82,6 +90,18 @@ public class VIndexTable extends JScrollPane implements IIndex {
 		
 	}
 	
+	private String getIndexColumnTitle() {
+		switch(indexType) {
+		case CAMPUS:
+			return EColumnTitle.eCampus.getTitle();
+		case COLLEGE:
+			return EColumnTitle.eCollege.getTitle();
+		case DEPARTMENT:
+			return EColumnTitle.eDepartment.getTitle();
+		default:
+			return "";
+		}
+	}
 	  
 
 		public void show(String fileName) {
@@ -89,7 +109,7 @@ public class VIndexTable extends JScrollPane implements IIndex {
 		CIndex cIndex = new CIndex();
 		 this.mIndexList = cIndex.getList(fileName+".txt");
 		 //set data to model
-		this.newModel();
+		this.model.setRowCount(0);
 		
 		
 		
@@ -100,13 +120,11 @@ public class VIndexTable extends JScrollPane implements IIndex {
 			this.model.addRow(row);
 		
 	}
-		this.updateUI();
-		//default
-		//showNext(0);
-		if(!mIndexList.isEmpty()) {
-			showNext(0);
-			updateLectureTable(0);
-		}
+		this.table.setRowSelectionInterval(0,0);
+	this.updateUI();
+	showNext(0);
+		
+		
 		}
 		
 	
@@ -117,7 +135,7 @@ private void showNext(int selectedIndex) {
 	}
 }
 
-/*private class MouseHandler implements MouseListener{
+private class MouseHandler implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -150,20 +168,26 @@ private void showNext(int selectedIndex) {
 		
 	}
 	
-}*/
-private void updateLectureTable(int selectedIndex) {
-	if(this.lectureTable != null) {
-		String fileName = this.mIndexList.get(selectedIndex).getFileName();
-		this.lectureTable.show(fileName);
-	}
 }
-		
-public void setNext(VIndexTable next) {
-	this.next = next;
-}
-		
-public void setLectureTable(VLectureTable lectureTable) {
-	this.lectureTable = lectureTable;
-}
+
+		public enum IndexType{
+			CAMPUS,
+			COLLEGE,
+			DEPARTMENT
+		}
+
+		public void addSelectedLectureList(List<MLecture> selectedLectureList, String department) {
+			// TODO Auto-generated method stub
+			for(MLecture mLecture : selectedLectureList) {
+				
+				
+				String row[] = new String[2];
+				row[0] = String.valueOf(mLecture.getCode());
+				row[1] = mLecture.getlName();
+				this.model.addRow(row);
+			}
+			this.updateUI();
+		}
+
 	}
 

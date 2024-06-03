@@ -22,7 +22,7 @@ public class DAOlecture {
 			while(s1.hasNext()) {
 				line = s1.nextLine();
 				
-				MLecture lectureName = new MLecture(0, line, line, 0, line);
+				MLecture lectureName = new MLecture();
 				String[] wordlist1 = line.split(" ");
 				
 				lectureName.setCode(Integer.parseInt(wordlist1[0]));

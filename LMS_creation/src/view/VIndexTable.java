@@ -53,24 +53,7 @@ public class VIndexTable extends JScrollPane implements IIndex {
 		this.table.addMouseListener(mouseHandler);
 		this.newModel();
 		this.mIndexList = new ArrayList<>();
-		
-		//List selection listener to the table
-		/*this.table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (!e.getValueIsAdjusting()) {
-					int selectedRow = table.getSelectedRow();
-					if(selectedRow != -1) {
-						showNext(selectedRow);
-						updateLectureTable(selectedRow);
-					}
-					
-				
-			}
-		}
-		});*/
-	
+		 this.table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 			
 			

@@ -4,6 +4,10 @@ import java.awt.Component;
 import java.awt.LayoutManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -30,7 +34,10 @@ public class VLectureTable extends JScrollPane implements IIndex{
 	
 	
 	
+	
 	//association
+	private VLectureTable vLectureTable1;
+	private VLectureTable vLectureTable2;
 	
 	//getters and setters
 
@@ -59,14 +66,19 @@ public class VLectureTable extends JScrollPane implements IIndex{
 				row[4] = mLecture.getTime();
 				this.model.addRow(row);
 				
+				
+				
+				
 			}
 			this.updateUI();
 		}
+		
 
 	
 	
 	
 	public VLectureTable() {
+		
 		
 		this.table = new JTable();
 		this.setViewportView(this.table);
@@ -78,7 +90,7 @@ public class VLectureTable extends JScrollPane implements IIndex{
 		
 		this.mLectureList = new Vector<>();
 		this.lectureDepartments = new HashMap<>();
-	
+		 this.table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 	}
 	
@@ -115,6 +127,7 @@ public class VLectureTable extends JScrollPane implements IIndex{
 			row[3] = String.valueOf(mLecture.getCredit());
 			row[4] = mLecture.getTime();
 			this.model.addRow(row);
+			
 		}
 		this.updateUI();
 		showNext(0);

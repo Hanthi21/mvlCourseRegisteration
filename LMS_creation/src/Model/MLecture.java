@@ -7,10 +7,16 @@ public class MLecture {
 	private String professor;
 	private int credit;
 	private String time;
-	private String department;
 	
+	//Default constructor	
+	public MLecture() {}
 	//constructor to initialize all fields
-	public MLecture() {
+	public MLecture(int code, String lName, String professor,int credit, String time) {
+		this.code =code;
+		this.lName =lName;
+		this.professor =professor;
+		this.credit =credit;
+		this.time =time;
 		
 	}
 	
@@ -50,14 +56,20 @@ public class MLecture {
 
 
 
-	public String getDepartment() {
-		return department;
+	
+	@Override
+	public int hashCode() {
+		
+		return code;
 	}
-
-
-
-	public void setDepartment(String department) {
-		this.department = department;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if(obj == null || getClass() != obj.getClass()) 
+			return false;
+		
+		MLecture mLecture = (MLecture) obj;
+		return code == mLecture.code;
 	}
 	
 

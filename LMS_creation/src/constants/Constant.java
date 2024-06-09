@@ -11,20 +11,7 @@ public class Constant {
 		
 	}
 	public static class indexTable{
-		public enum EHeader{
-			eID("아이디"),
-			eName("이름");
-			
-			private final String title;
-			private EHeader(String title) {
-				this.title = title;
-			}
-			public String getTitle() {
-				return this.title;
-			}
-			
-			
-		}
+	
 		//Add column names for campus, college and department
 		public enum EColumnTitle{
 			eCampus("Campus"),

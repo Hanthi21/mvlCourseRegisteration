@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,19 +17,21 @@ public class VSelectionPanel extends JPanel {
 	//components
 	private VIndexPanel vIndexPanel;
 	private VLectureTable vLectureTable;
-
+	
 	
 	
 	public VSelectionPanel() {
 		
 		
-		LayoutManager layoutManager = new BoxLayout(this,BoxLayout.Y_AXIS);
+		LayoutManager layoutManager = new BoxLayout(this,BoxLayout.X_AXIS);
 		this.setLayout(layoutManager);
 		
 		this.vIndexPanel = new VIndexPanel();
+		 this.vIndexPanel.setPreferredSize(new Dimension(700,400)); 
 		this.add(vIndexPanel);
 		
 		this.vLectureTable = new VLectureTable();
+		 
 		this.add(vLectureTable);
 		
 		//association

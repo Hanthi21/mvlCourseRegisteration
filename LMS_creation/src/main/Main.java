@@ -1,5 +1,8 @@
 package main;
 
+import javax.swing.JOptionPane;
+
+import view.VLoginDialog;
 import view.VMainFrame;
 
 //import javax.swing.JFrame;
@@ -11,11 +14,16 @@ public class Main {
 		
 		//constructors
 		public Main() {
+		VLoginDialog loginDialog = new VLoginDialog(this);//Pass 'this' to login dialog
+		//loginDialog.setModal(true);//blocking the other windows until this dialog is closed
+		loginDialog.setVisible(true);
+		
 			//attributes
+			
 			
 			//components
 			this.vMainFrame = new VMainFrame();
-			this.vMainFrame.setVisible(true);
+			this.vMainFrame.setVisible(false);//not visible initially
 			
 			//associations
 		}
@@ -32,5 +40,7 @@ public class Main {
 			main.initialize();
 			main.run();
 		}
-
+		public void showMainFrame() {
+			this.vMainFrame.setVisible(true);
+		}
 }
